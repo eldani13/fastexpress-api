@@ -1,0 +1,5 @@
+# Versiones fijas: son las verificadas con la suite completa (ADR-007)
+fastapi==0.143.0
+starlette==1.6.0
+pydantic==2.13.5
+uvicorn[standard]==0.53.0
