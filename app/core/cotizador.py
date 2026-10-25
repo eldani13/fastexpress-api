@@ -69,7 +69,12 @@ def _a_decimal(valor, error: type[CotizacionError], campo: str) -> Decimal:
 
 
 def _tiene_mas_de_dos_decimales(numero: Decimal) -> bool:
-    return numero != numero.quantize(reglas.CENTAVO)
+    """Revisa los dígitos sin aritmética, para no depender de la precisión
+    del contexto decimal (DEF-004: quantize fallaba con números enormes)."""
+    _, digitos, exponente = numero.as_tuple()
+    if exponente >= -2:
+        return False
+    return any(digitos[exponente + 2:])
 
 
 def validar_cotizacion(peso, monto_declarado) -> tuple[Decimal, Decimal]:
