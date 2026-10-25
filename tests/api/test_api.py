@@ -81,7 +81,7 @@ def test_entrada_mal_formada(cliente_api, datos):
     assert cuerpo["detalles"]
 
 
-@pytest.mark.xfail(strict=True, raises=AssertionError, reason="DEF-004 abierto: números enormes producen error 500")
+
 @pytest.mark.parametrize(
     "cambios, codigo",
     [
